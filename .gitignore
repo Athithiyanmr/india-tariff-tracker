@@ -1,0 +1,7 @@
+__pycache__/
+*.py[cod]
+*.db
+*.xlsx
+.env
+.DS_Store
+tariff_data/

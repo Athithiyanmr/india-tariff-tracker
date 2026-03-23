@@ -1,46 +1,30 @@
 # India Electricity Tariff Tracker
 
-A comprehensive tracker for electricity tariffs across all Indian states and UTs — with live data, year-on-year comparison, and validation tools.
+Live electricity tariff data across all 36 Indian states and UTs — LT + HT, 4 years of history, auto-updating from official SERC orders.
 
-## Live Site
-After publishing: https://YOUR-USERNAME.github.io/india-tariff-tracker
+## Live site
+[https://athithiyanmr.github.io/india-tariff-tracker](https://athithiyanmr.github.io/india-tariff-tracker)
 
-## What's Inside
-
-| File | Description |
+## Pages
+| File | What it does |
 |---|---|
-| `index.html` | Landing page with links to all tools |
-| `tariff_table.html` | Main tariff table — 16 states, all LT/HT categories |
-| `tariff_validator.html` | Edit + validate + year-on-year comparison (2022–2025) |
-| `tariff_tracker.html` | News feed, latest updates, policy changes |
-| `tariff_pipeline.py` | Python auto-scraper for 36 SERC websites |
-| `all_states_config.py` | Full 36-state SERC config |
-| `google_apps_script_monitor.js` | Google Sheets auto-monitor script |
-| `requirements.txt` | Python dependencies |
+| `index.html` | Homepage with links to all tools |
+| `tariff_table.html` | Full tariff table — 16 states, filterable and sortable |
+| `tariff_validator.html` | Edit, validate (12 rules), year-on-year comparison |
+| `tariff_tracker.html` | News feed, SERC map, schema reference |
+| `tariff_pipeline.py` | Python scraper + Claude API extractor |
+| `all_states_config.py` | 36-state SERC config |
+| `google_apps_script_monitor.js` | Google Sheets auto-monitor |
 
-## Features
-- 16 states with real tariff data (LT + HT, all consumer categories)
-- 4-year history (FY 2022-23 to FY 2025-26)
-- 12-rule validation engine
-- Year-on-year comparison with % change
-- Full change log / audit trail
-- Auto-monitoring pipeline with Claude API extraction
+## Setup for auto-updates
+1. Fork this repo
+2. Go to Settings → Secrets → Actions → add `ANTHROPIC_API_KEY`
+3. Go to Settings → Pages → Source: main branch / root
+4. GitHub Actions runs daily at 1:00 AM IST automatically
 
-## Running the Pipeline Locally
-
+## Local run
 ```bash
 pip install -r requirements.txt
 export ANTHROPIC_API_KEY=sk-ant-...
-python tariff_pipeline.py --run-all
-python tariff_pipeline.py --export --latest-only
+python tariff_pipeline.py --state "Tamil Nadu"
 ```
-
-## Auto-Update via GitHub Actions
-Add ANTHROPIC_API_KEY in: GitHub repo Settings > Secrets > Actions
-The workflow in .github/workflows/tariff_monitor.yml runs daily at 1 AM IST.
-
-## Data Sources
-Official SERC tariff orders: TNERC, MERC, KERC, APERC, TSERC, GERC, RERC, HERC, WBERC, OERC, PSERC, MPERC, UPERC, BERC, DERC, KSERC
-
-## License
-MIT
